@@ -25,7 +25,7 @@
             var mongo = new MongoDBConnection
             {
                 ConnectionString = "mongodb://localhost:27017",
-                Database = "user-info-db-tests"
+                Database = "user-db-tests"
             };
 
             Current = new Configurations(mongo);
