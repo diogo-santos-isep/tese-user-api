@@ -12,8 +12,8 @@
     {
         public static IServiceCollection AddSettings(this IServiceCollection services, IConfiguration configuration)
         {
-            services.Configure<IMongoDBConnection>(
-    configuration.GetSection(nameof(IMongoDBConnection)));
+            services.Configure<MongoDBConnection>(
+    configuration.GetSection(nameof(MongoDBConnection)));
 
             services.AddScoped<IMongoDatabase>(sp =>
             sp.GetRequiredService<IOptions<MongoDBConnection>>().Value.Connect());

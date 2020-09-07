@@ -35,6 +35,18 @@ namespace Tests.Integration
         }
 
         [TestMethod()]
+        public void CreateAdminIfNotExists_Success()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod()]
+        public void CreateAdminIfNotExists_AdminExists_NotCreated()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod()]
         public void Delete_Success()
         {
             var newUser = this.GenerateNewUser();

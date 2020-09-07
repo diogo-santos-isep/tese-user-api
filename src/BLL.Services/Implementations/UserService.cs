@@ -18,6 +18,12 @@
             return _repo.Create(model);
         }
 
+        public void CreateAdminIfNoUserExists()
+        {
+            if (Get().Count == 0)
+                Create(User.GetAdminDefault());
+        }
+
         public void Delete(string id) => _repo.Delete(id);
 
         public List<User> Get() => _repo.Get();
