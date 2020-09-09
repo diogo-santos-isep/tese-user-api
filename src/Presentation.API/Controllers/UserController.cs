@@ -6,7 +6,9 @@
     using Models.Domain.Enums;
     using Models.Domain.Models;
     using Presentation.API.Auth;
+    using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
 
     [Route("api/[controller]")]
@@ -20,9 +22,9 @@
             this._service = service;
         }
 
-        [HttpGet]
+        [HttpPost("search")]
         [ScopeAndRoleAuthorization(Scopes.UserServiceScope, ERole.Admin)]
-        public ActionResult<IEnumerable<User>> GetAll()
+        public ActionResult<IEnumerable<User>> Search(UserFilter filter)
         {
             return this._service.Get();
         }
@@ -31,6 +33,14 @@
         [ScopeAndRoleAuthorization(Scopes.UserServiceScope, ERole.Admin)]
         public ActionResult<User> Get(string id)
         {
+            return this._service.Get(id);
+        }
+
+        [HttpGet("logged")]
+        [ScopeAndRoleAuthorization(Scopes.UserServiceScope)]
+        public ActionResult<User> Get()
+        {
+            var id = HttpContext.User.Claims.FirstOrDefault(x => x.Type == "user_id")?.Value ?? throw new Exception("No user id claim was found on token");
             return this._service.Get(id);
         }
 

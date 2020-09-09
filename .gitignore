@@ -19,3 +19,4 @@
 /tests/Tests.Integration/obj
 /src/Presentation.API/.vs/Presentation.API/v16/TestStore/0
 /.vs/user-service/v16/TestStore/0
+/src/Models.Filters/obj

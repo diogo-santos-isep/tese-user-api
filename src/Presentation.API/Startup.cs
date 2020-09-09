@@ -38,7 +38,13 @@ namespace Presentation.API
                 {
                     ValidateAudience = false
                 };
-            });
+            }); 
+            services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
+            {
+                builder.AllowAnyOrigin()
+                       .AllowAnyMethod()
+                       .AllowAnyHeader();
+            }));
 
             services.AddControllers();
 
@@ -52,6 +58,7 @@ namespace Presentation.API
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseCors("MyPolicy");
 
             app.UseHttpsRedirection();
 
