@@ -2,6 +2,7 @@
 {
     using DAL.Repositories.Interfaces;
     using Models.Domain.Models;
+    using Models.Filters;
     using MongoDB.Driver;
     using System.Collections.Generic;
 
@@ -28,6 +29,19 @@
 
         public User Get(string id) =>
             _collection.Find<User>(book => book.Id == id).FirstOrDefault();
+
+        public List<User> Search(UserFilter filter)
+            =>
+                _collection
+                    .Find(book => true)
+                    .Skip((filter.Page - 1) * filter.PageSize)
+                    .Limit(filter.PageSize)
+                    .ToList();
+
+        public long Count(UserFilter filter)
+            =>
+                _collection
+                    .CountDocuments(book => true);
 
         public void Update(string id, User model) =>
             _collection.ReplaceOne(book => book.Id == id, model);

@@ -5,10 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DAL.Repositories\DAL.Repositories.csproj" />
     <ProjectReference Include="..\Models.Domain\Models.Domain.csproj" />
-    <ProjectReference Include="..\Models.DTO\Models.DTO.csproj" />
-    <ProjectReference Include="..\Models.Filters\Models.Filters.csproj" />
   </ItemGroup>
 
 </Project>

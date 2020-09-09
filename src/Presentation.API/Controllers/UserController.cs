@@ -5,6 +5,8 @@
     using Microsoft.AspNetCore.Mvc;
     using Models.Domain.Enums;
     using Models.Domain.Models;
+    using Models.DTO.Grids;
+    using Models.Filters;
     using Presentation.API.Auth;
     using System;
     using System.Collections.Generic;
@@ -24,9 +26,9 @@
 
         [HttpPost("search")]
         [ScopeAndRoleAuthorization(Scopes.UserServiceScope, ERole.Admin)]
-        public ActionResult<IEnumerable<User>> Search(UserFilter filter)
+        public ActionResult<UserGrid> Search(UserFilter filter)
         {
-            return this._service.Get();
+            return this._service.Search(filter);
         }
 
         [HttpGet("{id}")]

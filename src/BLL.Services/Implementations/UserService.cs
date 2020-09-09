@@ -3,6 +3,9 @@
     using BLL.Services.Interfaces;
     using DAL.Repositories.Interfaces;
     using Models.Domain.Models;
+    using Models.DTO.Grids;
+    using Models.Filters;
+    using System;
     using System.Collections.Generic;
 
     public class UserService : IUserService
@@ -30,7 +33,17 @@
 
         public User Get(string id) => _repo.Get(id);
 
-        public User Update(string id, User model) {
+        public UserGrid Search(UserFilter filter)
+        {
+            return new UserGrid
+            {
+                List = _repo.Search(filter),
+                Count = Convert.ToInt32(_repo.Count(filter))
+            };
+        }
+
+        public User Update(string id, User model)
+        {
             _repo.Update(id, model);
             return model;
         }

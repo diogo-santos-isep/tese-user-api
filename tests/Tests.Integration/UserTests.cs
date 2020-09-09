@@ -85,6 +85,12 @@ namespace Tests.Integration
         }
 
         [TestMethod()]
+        public void Search_Success()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod()]
         public void Update_Success()
         {
             var newUser = this.GenerateNewUser();
