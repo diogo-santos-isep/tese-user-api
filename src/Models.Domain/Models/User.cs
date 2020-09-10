@@ -24,12 +24,13 @@
 
         public override bool Equals(object obj)
         {
-            return obj is User user &&
-                   Id == user.Id &&
+            if (!(obj is User user))
+                return false;
+            return Id == user.Id &&
                    Name == user.Name &&
                    Email == user.Email &&
                    Photo == user.Photo &&
-                   Photo == user.Password &&
+                   Password == user.Password &&
                    Department_Id == user.Department_Id &&
                    Department_Description == user.Department_Description &&
                    Role == user.Role;
