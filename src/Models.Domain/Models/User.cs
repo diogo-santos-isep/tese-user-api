@@ -18,6 +18,7 @@
         public string Photo { get; set; }
         [BsonRepresentation(BsonType.ObjectId)]
         public string Department_Id { get; set; }
+        public string Department_Description { get; set; }
 
         public ERole Role { get; set; }
 
@@ -30,6 +31,7 @@
                    Photo == user.Photo &&
                    Photo == user.Password &&
                    Department_Id == user.Department_Id &&
+                   Department_Description == user.Department_Description &&
                    Role == user.Role;
         }
 
@@ -42,6 +44,7 @@
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Photo);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Password);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Department_Id);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Department_Description);
             hashCode = hashCode * -1521134295 + Role.GetHashCode();
             return hashCode;
         }

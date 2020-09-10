@@ -20,3 +20,7 @@
 /src/Presentation.API/.vs/Presentation.API/v16/TestStore/0
 /.vs/user-service/v16/TestStore/0
 /src/Models.Filters/obj
+/.vs/user-service/DesignTimeBuild
+/src/Models.DTO/bin/Debug/netstandard2.0
+/src/Models.DTO/obj/Debug/netstandard2.0
+/src/Models.Filters/bin/Debug/netstandard2.0
