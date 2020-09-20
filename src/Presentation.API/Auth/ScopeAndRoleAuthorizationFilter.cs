@@ -38,7 +38,7 @@
         {
             if (!String.IsNullOrEmpty(this.scope))
             {
-                var hasScope = context.HttpContext.User.Claims.Any(c => c.Type == ClaimTypes.Role && c.Value == this.scope);
+                var hasScope = context.HttpContext.User.Claims.Any(c => c.Type == "scope" && c.Value == this.scope);
                 if (!hasScope)
                     context.Result = new ForbidResult();
             }

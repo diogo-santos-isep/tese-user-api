@@ -2,6 +2,6 @@
 {
     public class Scopes
     {
-        public const string UserServiceScope = "user.service";
+        public const string UserServiceScope = "user";
     }
 }
