@@ -7,8 +7,11 @@ namespace Presentation.API
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
     using Microsoft.IdentityModel.Tokens;
+    using Microsoft.OpenApi.Models;
     using Presentation.API.Components;
     using System;
+    using System.IO;
+    using System.Reflection;
 
     public class Startup
     {
@@ -44,6 +47,32 @@ namespace Presentation.API
                        .AllowAnyHeader();
             }));
 
+            // Register the Swagger generator, defining 1 or more Swagger documents
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Version = "v1",
+                    Title = "User Api",
+                    Description = "Api to manage help desk users",
+                    Contact = new OpenApiContact
+                    {
+                        Name = "Diogo Santos",
+                        Email = "1140294@isep.ipp.pt",
+                    },
+                    License = new OpenApiLicense
+                    {
+                        Name = "Use under LICX",
+                        Url = new Uri("https://example.com/license"),
+                    }
+                });
+
+                // Set the comments path for the Swagger JSON and UI.**
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                c.IncludeXmlComments(xmlPath);
+            });
+
             services.AddControllers();
 
             CreateAdminIfNotExists(services.BuildServiceProvider().GetRequiredService<IUserService>());
@@ -68,6 +97,12 @@ namespace Presentation.API
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+            });
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
             });
         }
 

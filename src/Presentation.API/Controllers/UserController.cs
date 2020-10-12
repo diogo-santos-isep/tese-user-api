@@ -24,6 +24,13 @@
             this._service = service;
         }
 
+        /// <summary>
+        /// Performs a Search on Users
+        /// | scope: user
+        /// | role: admin
+        /// </summary>
+        /// <param name="filter"></param>
+        /// <returns></returns>
         [HttpPost("search")]
         [ScopeAndRoleAuthorization(Scopes.UserServiceScope, ERole.Admin)]
         public ActionResult<UserGrid> Search(UserFilter filter)
@@ -31,6 +38,13 @@
             return this._service.Search(filter);
         }
 
+        /// <summary>
+        /// Gets a User
+        /// | scope: user
+        /// | role: admin
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("{id}")]
         [ScopeAndRoleAuthorization(Scopes.UserServiceScope, ERole.Admin)]
         public ActionResult<User> Get(string id)
@@ -38,6 +52,11 @@
             return this._service.Get(id);
         }
 
+        /// <summary>
+        /// Gets the logged user using the access token
+        /// | scope: user
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("logged")]
         [ScopeAndRoleAuthorization(Scopes.UserServiceScope)]
         public ActionResult<User> Get()
@@ -46,6 +65,13 @@
             return this._service.Get(id);
         }
 
+        /// <summary>
+        /// Creates a user
+        /// | scope: user
+        /// | role: admin
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
         [HttpPost]
         [ScopeAndRoleAuthorization(Scopes.UserServiceScope, ERole.Admin)]
         public ActionResult<User> Create(User user)
@@ -53,6 +79,14 @@
             return this._service.Create(user);
         }
 
+        /// <summary>
+        /// Updates a User
+        /// | scope: user
+        /// | role: admin
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="user"></param>
+        /// <returns></returns>
         [HttpPut("{id}")]
         [ScopeAndRoleAuthorization(Scopes.UserServiceScope, ERole.Admin)]
         public ActionResult<User> Update(string id, User user)
@@ -60,6 +94,13 @@
             return this._service.Update(id, user);
         }
 
+        /// <summary>
+        /// Deletes a user 
+        /// | scope: user
+        /// | role: admin
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete("{id}")]
         [ScopeAndRoleAuthorization(Scopes.UserServiceScope, ERole.Admin)]
         public ActionResult<User> Delete(string id)

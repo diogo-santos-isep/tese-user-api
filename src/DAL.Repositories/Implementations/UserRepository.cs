@@ -34,8 +34,10 @@
         public List<User> Search(UserFilter filter)
         {
             var filters = filter.BuildFilters();
+            var sort = filter.BuildSort<User>();
             return _collection
                     .Find(filters)
+                    .Sort(sort)
                     .Skip((filter.Page - 1) * filter.PageSize)
                     .Limit(filter.PageSize)
                     .ToList();

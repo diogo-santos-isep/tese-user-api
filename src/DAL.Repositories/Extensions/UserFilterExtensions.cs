@@ -18,5 +18,9 @@
                 arr.Add(Builders<User>.Filter.Empty);
             return Builders<User>.Filter.And(arr);
         }
+        public static SortDefinition<T> BuildSort<T>(this Filter filter)
+        {
+            return filter.SortAscending ? Builders<T>.Sort.Ascending(filter.SortBy) : Builders<T>.Sort.Descending(filter.SortBy);
+        }
     }
 }
